@@ -1,0 +1,251 @@
+Cricketer ManagementSystem
+
+Create a class Cricketer with below
+
+attributes:
+
+
+
+cricketerld - int
+matchesPlayed - int 
+totalRuns - int 
+cricketerName - String
+team - String
+
+
+
+Write getters, setters and parameterized constructor in the above mentioned attribute sequence as required.
+
+Create class Solution with main methed
+
+Implement two static methods - findCricketerWithMinimum MatchesPlayed and searchCricketer Byld in Solution class.
+
+ findCricketerWithMinimum Matches Played in the Solution class:
+  This method will take array of Cricketer objects and returns the Cricketer object having the minimum Matches Played.
+
+searchCricketerByld:
+Create a static method searchCricketerByld in the Solution class.
+This method will take array of Cricketer objects and Id as input and returns the Cricketer object having the mentioned Id. If the mentioned Id is not found then method should return null.
+
+These methods should be called from the
+main method
+Write code to perform the following
+
+tasks:
+
+
+1. Take necessary input variable and call findCricketerWithMinimumMatchesPlayed. For this method - The main method should print the Cricketer ID with minimum of mentioned attribute(matchesPlayed).
+
+2. Take necessary input variable and call searchCricketer Byld. For this method - The main method should print the Cricketer ID and Name(as shown in the sample output) if the returned value is not null. If the returned value is null then it should print "No such Cricketer".
+The above mentioned static methods should be called from the main method. Also write the code for accepting the inputs and printing the outputs. Don't use any static test or formatting for printing the result. Just invoke the method and print the result
+
+Note:
+
+All String comparison needs to be case in-sensitive
+
+You can use/refer the below given sample input and output to verify your solution. No two object will have the same number of matches played
+
+
+Sample Input (below) description:
+
+The 1st input taken in the main section is the number of Cricketer objects to be added to the list of Cricketer.
+
+The next set of inputs are id,matches Played,totalRuns,name,team for each Cricketer object taken one after other and is repeated for number of Cricketer objects given in the first line of input.
+
+The last line of inputs will be the arguments which needs to be passed as parameter to the methods.
+
+Consider below sample input and output to test your code: 
+
+Sample Input 1 - public:
+
+4
+1001
+100
+7000
+Kohli
+India
+1002
+120
+4700
+Yuvi
+India
+1003
+80
+3200
+Smith
+Australia
+1004
+130
+5800
+Gayle
+Westindies
+1004
+
+Sample output 1 
+1003
+1004
+Gayle
+
+Sample Input 2 - 
+
+4
+1001
+100
+7000
+Kohli
+India
+1002
+120
+4700
+Yuvi
+India
+1003
+80
+3200
+Smith
+Australia
+1004
+130
+5800
+Gayle
+WestIndies
+1005
+
+
+Sample Output 2:
+1003
+No such Cricketer
+
+
+
+
+
+
+
+
+
+
+**************************************************************************************************************                                             S-O-L-U-T-I-O-N                                                     
+***************************************************************************************************************
+
+
+
+
+
+
+
+import java.util.*;
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int size = sc.nextInt();
+        Cricker[] arr = new Cricker[size];
+        for (int i = 0; i < size; i++) {
+            int a = sc.nextInt();
+            sc.nextLine();
+            int b = sc.nextInt();
+            sc.nextLine();
+            int c = sc.nextInt();
+            sc.nextLine();
+            String d = sc.nextLine();
+            String e = sc.nextLine();
+            arr[i] = new Cricker(a, b, c, d, e);
+        }
+        int id = sc.nextInt();
+        Cricker player1 = findCricketerWithMinimumMatchesPlayed(arr);
+        System.out.println(player1.getId());
+//        System.out.println(player1.getMathesPlayed());
+
+        Cricker player2 = searchCricketerByld(arr, id);
+        if (player2 == null) {
+            System.out.println("No such Cricketer");
+        } else {
+            System.out.println(player2.getId());
+            System.out.println(player2.getName());
+        }
+    }
+
+    static Cricker searchCricketerByld(Cricker[] arr, int id) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i].getId() == id) {
+                return arr[i];
+            }
+        }
+        return null;
+    }
+
+    static Cricker findCricketerWithMinimumMatchesPlayed(Cricker[] arr) {
+        int minimum = arr[0].getMathesPlayed();
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i].getMathesPlayed() <= minimum) {
+                minimum = arr[i].getMathesPlayed();
+            }
+
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i].getMathesPlayed() == minimum) {
+                return arr[i];
+            }
+        }
+        return null;
+    }
+}
+     class Cricker {
+        private int id;
+        private int mathesPlayed;
+        private int runsScored;
+        private String name;
+        private String team;
+
+        public Cricker(int id, int mathesPlayed, int runsScored, String name, String team) {
+            this.id = id;
+            this.mathesPlayed = mathesPlayed;
+            this.runsScored = runsScored;
+            this.name = name;
+            this.team = team;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public int getMathesPlayed() {
+            return mathesPlayed;
+        }
+
+        public void setMathesPlayed(int mathesPlayed) {
+            this.mathesPlayed = mathesPlayed;
+        }
+
+        public int getRunsScored() {
+            return runsScored;
+        }
+
+        public void setRunsScored(int runsScored) {
+            this.runsScored = runsScored;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getTeam() {
+            return team;
+        }
+
+        public void setTeam(String team) {
+            this.team = team;
+        }
+
+
+}
+
